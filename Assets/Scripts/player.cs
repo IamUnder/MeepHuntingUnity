@@ -22,8 +22,18 @@ public class player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetBool("isJunmping", true);
+            Debug.Log("Space key was pressed");
+            animator.SetBool("isJumping", true);
             rb.AddForce(new Vector2(0, speed));
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {   
+        if (collision.gameObject.tag == "Ground")
+        {
+            Debug.Log("Collision");
+            animator.SetBool("isJumping", false);
         }
     }
 }
